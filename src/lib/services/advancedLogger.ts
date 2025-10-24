@@ -574,3 +574,6 @@ export class AdvancedLogger {
 
 // Export singleton instance
 export const advancedLogger = new AdvancedLogger();
+
+// Export default logger instance for backward compatibility
+export const logger = advancedLogger;

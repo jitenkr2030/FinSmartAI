@@ -15,7 +15,7 @@ export const GET = SecurityMiddlewareFactory.withPermissions(
     try {
       const { backupId } = context.params;
       
-      const backup = await databaseBackupService.getBackupMetadata(backupId);
+      const backup = await databaseBackupService.getBackup(backupId);
       if (!backup) {
         return NextResponse.json(
           {

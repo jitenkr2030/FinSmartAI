@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useEnhancedWebSocket } from './enhancedWebSocketService';
+import { useEnhancedWebSocket } from '@/lib/hooks/useEnhancedWebSocket';
 
 interface MarketData {
   symbol: string;

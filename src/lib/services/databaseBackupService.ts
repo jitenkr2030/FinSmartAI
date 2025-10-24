@@ -624,6 +624,11 @@ export class DatabaseBackupService {
     }
   }
 
+  // Public method to get backup metadata
+  async getBackup(backupId: string): Promise<BackupMetadata | null> {
+    return await this.getBackupMetadata(backupId);
+  }
+
   private async fileExists(filePath: string): Promise<boolean> {
     try {
       await fs.access(filePath);
@@ -908,3 +913,6 @@ export class DatabaseBackupService {
 
 // Export singleton instance
 export const databaseBackupService = new DatabaseBackupService();
+
+// Export database recovery service alias for backward compatibility
+export const databaseRecoveryService = databaseBackupService;

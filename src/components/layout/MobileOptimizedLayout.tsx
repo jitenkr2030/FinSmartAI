@@ -231,7 +231,7 @@ export function MobileOptimizedLayout({
     <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
       <Header />
       
-      <main className={`pb-${bottomNavigation && isMobile ? '20' : '0'}`}>
+      <main className={bottomNavigation && isMobile ? "pb-20" : "pb-0"}>
         {children}
       </main>
       

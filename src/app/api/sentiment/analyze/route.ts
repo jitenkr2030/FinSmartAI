@@ -7,7 +7,7 @@ import { withValidation, schemas } from '@/lib/middleware/validationMiddleware';
 export const POST = withValidation(
   async (request: NextRequest, context: any) => {
     try {
-      const { content, type = 'news', source, userId } = context.validatedData.body;
+      const { text, type = 'news', source, userId } = context.validatedData.body;
       
       const startTime = Date.now();
       
@@ -34,7 +34,7 @@ Respond in JSON format with these fields.`
             },
             {
               role: 'user',
-              content: `Please analyze the sentiment of this ${type} content: "${content}"`
+              content: `Please analyze the sentiment of this ${type} content: "${text}"`
             }
           ],
           temperature: 0.3,
@@ -72,8 +72,8 @@ Respond in JSON format with these fields.`
       if (type === 'news') {
         savedRecord = await db.newsArticle.create({
           data: {
-            title: content.substring(0, 100) + '...',
-            content: content,
+            title: text.substring(0, 100) + '...',
+            content: text,
             source: source || 'Unknown',
             sentiment: sentimentResult.sentiment_score,
             relevance: sentimentResult.relevance,
@@ -84,7 +84,7 @@ Respond in JSON format with these fields.`
         savedRecord = await db.socialMediaPost.create({
           data: {
             platform: source || 'Unknown',
-            content: content,
+            content: text,
             sentiment: sentimentResult.sentiment_score,
             relevance: sentimentResult.relevance,
             postedAt: new Date()
@@ -99,7 +99,7 @@ Respond in JSON format with these fields.`
             userId,
             modelName: 'Kronos-SentimentAI',
             endpoint: '/api/sentiment/analyze',
-            requestData: JSON.stringify({ content, type, source }),
+            requestData: JSON.stringify({ text, type, source }),
             responseData: JSON.stringify(sentimentResult),
             processingTimeMs,
             cost: 0.05 // Lower cost for sentiment analysis
@@ -125,7 +125,7 @@ Respond in JSON format with these fields.`
     }
   },
   {
-    bodySchema: schemas.news.analyzeSentiment
+    bodySchema: schemas.sentiment.analyze
   }
 );
 

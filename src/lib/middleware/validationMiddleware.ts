@@ -2,6 +2,135 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createValidationError } from '@/lib/validations';
 
+// Common validation schemas
+export const schemas = {
+  // User schemas
+  user: {
+    create: z.object({
+      email: z.string().email(),
+      password: z.string().min(8),
+      name: z.string().min(2),
+      role: z.enum(['user', 'admin', 'moderator']).optional()
+    }),
+    update: z.object({
+      email: z.string().email().optional(),
+      name: z.string().min(2).optional(),
+      role: z.enum(['user', 'admin', 'moderator']).optional()
+    }),
+    login: z.object({
+      email: z.string().email(),
+      password: z.string().min(1)
+    })
+  },
+  
+  // Database schemas
+  database: {
+    backup: z.object({
+      type: z.enum(['full', 'incremental', 'differential']),
+      priority: z.enum(['high', 'normal', 'low']).optional()
+    }),
+    restore: z.object({
+      backupId: z.string(),
+      force: z.boolean().optional(),
+      preRestoreScript: z.string().optional(),
+      postRestoreScript: z.string().optional()
+    }),
+    config: z.object({
+      storage: z.object({
+        localPath: z.string(),
+        cloudStorage: z.object({
+          provider: z.enum(['aws', 'gcp', 'azure']),
+          bucket: z.string(),
+          region: z.string()
+        }).optional()
+      }).optional(),
+      schedule: z.object({
+        enabled: z.boolean(),
+        interval: z.enum(['hourly', 'daily', 'weekly', 'monthly']),
+        retention: z.object({
+          daily: z.number(),
+          weekly: z.number(),
+          monthly: z.number()
+        })
+      }).optional()
+    })
+  },
+  
+  // Log schemas
+  logs: {
+    query: z.object({
+      level: z.enum(['error', 'warn', 'info', 'debug', 'verbose']).optional(),
+      startTime: z.string().datetime().optional(),
+      endTime: z.string().datetime().optional(),
+      userId: z.string().optional(),
+      path: z.string().optional(),
+      limit: z.number().min(1).max(1000).optional(),
+      offset: z.number().min(0).optional()
+    }),
+    export: z.object({
+      startTime: z.string().datetime().optional(),
+      endTime: z.string().datetime().optional(),
+      level: z.enum(['error', 'warn', 'info', 'debug', 'verbose']).optional(),
+      format: z.enum(['json', 'csv'])
+    }),
+    audit: z.object({
+      userId: z.string().optional(),
+      action: z.string().optional(),
+      resource: z.string().optional(),
+      startTime: z.string().datetime().optional(),
+      endTime: z.string().datetime().optional(),
+      result: z.enum(['success', 'failure', 'partial']).optional(),
+      limit: z.number().min(1).max(1000).optional(),
+      offset: z.number().min(0).optional()
+    })
+  },
+  
+  // Payment schemas
+  payment: {
+    intent: z.object({
+      amount: z.number().positive(),
+      currency: z.string().default('USD'),
+      paymentMethod: z.string(),
+      description: z.string().optional()
+    }),
+    webhook: z.object({
+      id: z.string(),
+      status: z.string(),
+      amount: z.number(),
+      currency: z.string()
+    })
+  },
+  
+  // Sentiment analysis schemas
+  sentiment: {
+    analyze: z.object({
+      text: z.string().min(1).max(5000),
+      source: z.string().optional(),
+      language: z.string().default('en')
+    }),
+    batch: z.object({
+      texts: z.array(z.string().min(1).max(5000)).max(100),
+      source: z.string().optional(),
+      language: z.string().default('en')
+    })
+  },
+  
+  // Common schemas
+  common: {
+    pagination: z.object({
+      page: z.number().min(1).default(1),
+      limit: z.number().min(1).max(100).default(20)
+    }),
+    id: z.object({
+      id: z.string().min(1)
+    }),
+    dateRange: z.object({
+      startDate: z.string().datetime(),
+      endDate: z.string().datetime()
+    })
+  }
+};
+
 export interface ValidationMiddlewareOptions {
   schema: z.ZodSchema<any>;
   source?: 'body' | 'query' | 'params';

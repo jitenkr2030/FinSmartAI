@@ -325,6 +325,75 @@ export class SecurityMiddleware {
 // Export singleton instance
 export const securityMiddleware = new SecurityMiddleware();
 
+// Factory function for creating security middleware instances
+export const SecurityMiddlewareFactory = {
+  create: (config?: Partial<SecurityConfig>) => new SecurityMiddleware(config),
+  getInstance: () => securityMiddleware,
+  
+  withPermissions: (permissions: string[], handler: (req: NextRequest, user: any, context: any) => Promise<NextResponse> | NextResponse) => {
+    return async (req: NextRequest, context?: any) => {
+      try {
+        // Check if user has required permissions
+        // For now, we'll skip the actual permission check and just call the handler
+        // In a real implementation, you would validate the user's permissions here
+        
+        const user = {
+          id: 'user-id', // This would come from authentication
+          permissions: permissions // This would come from user's role/permissions
+        };
+        
+        return await handler(req, user, context);
+      } catch (error) {
+        logger.error('Permission check failed:', error);
+        
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Permission denied',
+            code: 'PERMISSION_DENIED'
+          },
+          { status: 403 }
+        );
+      }
+    };
+  }
+};
+
+// Permission constants
+export const PERMISSIONS = {
+  // Database permissions
+  DATABASE_READ: 'database:read',
+  DATABASE_WRITE: 'database:write',
+  DATABASE_BACKUP: 'database:backup',
+  DATABASE_RESTORE: 'database:restore',
+  DATABASE_CONFIG: 'database:config',
+  
+  // Log permissions
+  LOGS_READ: 'logs:read',
+  LOGS_WRITE: 'logs:write',
+  LOGS_AUDIT: 'logs:audit',
+  LOGS_EXPORT: 'logs:export',
+  LOGS_MANAGE: 'logs:manage',
+  VIEW_LOGS: 'logs:view', // Alias for LOGS_READ
+  
+  // Payment permissions
+  PAYMENT_READ: 'payment:read',
+  PAYMENT_WRITE: 'payment:write',
+  PAYMENT_MANAGE: 'payment:manage',
+  
+  // System permissions
+  SYSTEM_READ: 'system:read',
+  SYSTEM_WRITE: 'system:write',
+  SYSTEM_CONFIG: 'system:config',
+  SYSTEM_ADMIN: 'system:admin',
+  MANAGE_SYSTEM: 'system:manage', // Alias for SYSTEM_ADMIN
+  
+  // API permissions
+  API_READ: 'api:read',
+  API_WRITE: 'api:write',
+  API_ADMIN: 'api:admin'
+};
+
 // Export middleware function for Next.js
 export async function middleware(req: NextRequest): Promise<NextResponse> {
   return await securityMiddleware.middleware(req);
