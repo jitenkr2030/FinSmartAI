@@ -13,7 +13,7 @@ import {
   cacheManagement,
   cacheUtils 
 } from '@/lib/services/cachedApiService';
-import { useCache } from '@/lib/services/cacheService';
+import { useCache } from '@/hooks/useCache';
 import { 
   Database, 
   Zap, 
