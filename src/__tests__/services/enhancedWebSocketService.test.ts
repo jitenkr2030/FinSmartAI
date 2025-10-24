@@ -1,15 +1,17 @@
 import { EnhancedWebSocketService } from '@/lib/services/enhancedWebSocketService';
 
 // Mock socket.io-client
+const mockIo = jest.fn(() => ({
+  on: jest.fn(),
+  off: jest.fn(),
+  emit: jest.fn(),
+  connect: jest.fn(),
+  disconnect: jest.fn(),
+  connected: false,
+}));
+
 jest.mock('socket.io-client', () => ({
-  io: jest.fn(() => ({
-    on: jest.fn(),
-    off: jest.fn(),
-    emit: jest.fn(),
-    connect: jest.fn(),
-    disconnect: jest.fn(),
-    connected: false,
-  })),
+  io: mockIo,
 }));
 
 describe('EnhancedWebSocketService', () => {
@@ -27,7 +29,7 @@ describe('EnhancedWebSocketService', () => {
     };
     
     // Mock the io function to return our mock socket
-    (require('socket.io-client').io as jest.Mock).mockReturnValue(mockSocket);
+    mockIo.mockReturnValue(mockSocket);
     
     webSocketService = new EnhancedWebSocketService({
       url: 'http://localhost:3000',

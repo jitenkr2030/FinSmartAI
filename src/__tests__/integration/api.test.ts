@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { createServer } from 'http';
 
 // Mock Next.js to avoid TextEncoder issues
 jest.mock('next', () => ({
@@ -16,8 +17,6 @@ describe('API Integration Tests', () => {
 
   beforeAll(async () => {
     // Create a simple mock server for testing
-    const { createServer } = require('http');
-    
     server = createServer((req, res) => {
       // Handle invalid JSON
       if (req.url === '/api/predict' && req.method === 'POST') {

@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { createServer } from 'http';
 
 // Mock Next.js to avoid TextEncoder issues
 jest.mock('next', () => ({
@@ -16,8 +17,6 @@ describe('Comprehensive API Integration Tests', () => {
 
   beforeAll(async () => {
     // Create a comprehensive mock server for testing
-    const { createServer } = require('http');
-    
     server = createServer((req, res) => {
       // Enable CORS
       res.setHeader('Access-Control-Allow-Origin', '*');

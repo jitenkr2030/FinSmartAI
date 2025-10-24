@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { logger, PerformanceMonitor, ErrorTracker } from '@/lib/services/monitoringService';
+import { logger, PerformanceMonitor, ErrorTracker, Sentry } from '@/lib/services/monitoringService';
 import { securityConfig } from '@/lib/config/securityConfig';
+import * as os from 'os';
 
 // Request/Response logging interface
 interface RequestLog {
@@ -528,7 +529,7 @@ export class EnhancedMonitoringService {
   // Get memory usage
   private getMemoryUsage(): number {
     const used = process.memoryUsage();
-    const total = require('os').totalmem();
+    const total = os.totalmem();
     return used.heapUsed / total;
   }
 
@@ -668,7 +669,6 @@ class AlertManager {
   private sendAlert(alert: any): void {
     // Send to Sentry
     try {
-      const { Sentry } = require('@/lib/services/monitoringService');
       Sentry.captureMessage(alert.message, {
         level: alert.severity,
         tags: {

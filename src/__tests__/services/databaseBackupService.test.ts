@@ -15,7 +15,7 @@ jest.mock('@/lib/db', () => ({
 }));
 
 // Mock file system operations
-jest.mock('fs', () => ({
+const mockFs = {
   existsSync: jest.fn(),
   mkdirSync: jest.fn(),
   writeFileSync: jest.fn(),
@@ -23,7 +23,9 @@ jest.mock('fs', () => ({
   unlinkSync: jest.fn(),
   readdirSync: jest.fn(),
   statSync: jest.fn(),
-}));
+};
+
+jest.mock('fs', () => mockFs);
 
 // Mock crypto for encryption
 jest.mock('crypto', () => ({
@@ -454,9 +456,8 @@ describe('DatabaseBackupService', () => {
       (db.backup.findUnique as jest.Mock).mockResolvedValue(mockBackup);
 
       // Mock file system operations
-      const fs = require('fs');
-      fs.existsSync.mockReturnValue(true);
-      fs.statSync.mockReturnValue({ size: 1024 });
+      mockFs.existsSync.mockReturnValue(true);
+      mockFs.statSync.mockReturnValue({ size: 1024 });
 
       const result = await backupService.validateBackup('backup-123');
 
@@ -478,8 +479,7 @@ describe('DatabaseBackupService', () => {
 
       (db.backup.findUnique as jest.Mock).mockResolvedValue(mockBackup);
 
-      const fs = require('fs');
-      fs.existsSync.mockReturnValue(false);
+      mockFs.existsSync.mockReturnValue(false);
 
       const result = await backupService.validateBackup('backup-123');
 

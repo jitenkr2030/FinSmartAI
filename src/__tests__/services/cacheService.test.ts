@@ -1,4 +1,4 @@
-import { EnhancedCacheManager, CacheNamespaces, CacheTTL } from '@/lib/services/cacheService';
+import { EnhancedCacheManager, CacheNamespaces, CacheTTL, cacheUtils } from '@/lib/services/cacheService';
 
 describe('EnhancedCacheManager', () => {
   let cacheManager: EnhancedCacheManager;
@@ -191,8 +191,6 @@ describe('EnhancedCacheManager', () => {
 
   describe('Cache Utilities', () => {
     it('should generate cache keys correctly', () => {
-      const { cacheUtils } = require('@/lib/services/cacheService');
-      
       const key1 = cacheUtils.generateKey('market_data', { symbol: 'NIFTY50', timeframe: '1d' });
       const key2 = cacheUtils.generateKey('prediction', { model: 'SentimentAI', symbol: 'RELIANCE' });
       
