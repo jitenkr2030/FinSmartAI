@@ -1,0 +1,75 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dependencies for backup
+RUN apk add --no-cache \
+    bash \
+    curl \
+    aws-cli \
+    && rm -rf /var/cache/apk/*
+
+# Copy package files
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Copy source code
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Create backup directories
+RUN mkdir -p /app/backups /app/logs
+
+# Create backup script
+COPY <<EOF /app/backup.sh
+#!/bin/bash
+
+# Backup script for FinSmartAI
+set -e
+
+BACKUP_DIR="/app/backups"
+DATABASE_PATH="/app/data/custom.db"
+DATE=\$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="backup_\${DATE}.db.gz"
+LOG_FILE="/app/logs/backup_\${DATE}.log"
+
+echo "Starting backup at \$(date)" > \$LOG_FILE
+
+# Create backup
+if [ -f "\$DATABASE_PATH" ]; then
+    gzip -c "\$DATABASE_PATH" > "\$BACKUP_DIR/\$BACKUP_FILE"
+    echo "Database backup created: \$BACKUP_FILE" >> \$LOG_FILE
+    
+    # Upload to S3 if configured
+    if [ ! -z "\$S3_BUCKET" ]; then
+        aws s3 cp "\$BACKUP_DIR/\$BACKUP_FILE" "s3://\$S3_BUCKET/\$BACKUP_FILE"
+        echo "Backup uploaded to S3: s3://\$S3_BUCKET/\$BACKUP_FILE" >> \$LOG_FILE
+    fi
+    
+    # Clean old backups (keep last 7 days)
+    find "\$BACKUP_DIR" -name "backup_*.db.gz" -mtime +7 -delete
+    echo "Old backups cleaned up" >> \$LOG_FILE
+else
+    echo "Database file not found: \$DATABASE_PATH" >> \$LOG_FILE
+    exit 1
+fi
+
+echo "Backup completed at \$(date)" >> \$LOG_FILE
+EOF
+
+# Make backup script executable
+RUN chmod +x /app/backup.sh
+
+# Set up cron job for automated backups
+COPY <<EOF /etc/crontabs/root
+# Automated database backups - every 6 hours
+0 */6 * * * /app/backup.sh
+EOF
+
+# Install cron
+RUN apk add --no-cache cron
+
+# Start cron in foreground
+CMD ["crond", "-f"]

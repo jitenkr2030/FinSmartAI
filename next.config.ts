@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   },
   // 禁用 Next.js 热重载，由 nodemon 处理重编译
   reactStrictMode: false,
+  // Enable standalone output for Docker
+  output: 'standalone',
   webpack: (config, { dev }) => {
     if (dev) {
       // 禁用 webpack 的热模块替换
@@ -19,6 +21,18 @@ const nextConfig: NextConfig = {
   eslint: {
     // 构建时忽略ESLint错误
     ignoreDuringBuilds: true,
+  },
+  // Performance optimizations for production
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
+  httpAgentOptions: {
+    keepAlive: true,
+  },
+  // Image optimization configuration
+  images: {
+    domains: ['localhost'],
+    formats: ['image/webp', 'image/avif'],
   },
 };
 
