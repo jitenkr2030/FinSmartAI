@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -22,10 +22,19 @@ import {
   Target
 } from "lucide-react";
 
-export function AppHeader() {
+interface AppHeaderProps {
+  session?: {
+    user: {
+      id: string;
+      email: string;
+      name: string;
+    };
+  };
+}
+
+export function AppHeader({ session }: AppHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(3);
-  const { data: session } = useSession();
 
   const handleNavigation = (url: string) => {
     console.log('Navigating to:', url);
