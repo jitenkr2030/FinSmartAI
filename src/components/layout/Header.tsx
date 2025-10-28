@@ -24,16 +24,15 @@ export function Header({ onMenuClick }: HeaderProps) {
   const [notificationCount, setNotificationCount] = useState(3);
 
   const handleGetStarted = () => {
-    // Navigate to signup or pricing page
+    // Navigate to billing page
     console.log("Get Started clicked");
-    // For now, scroll to pricing section
-    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    window.location.href = "/billing";
   };
 
   const handleLiveDemo = () => {
-    // Navigate to demo page or open demo modal
+    // Navigate to demos page
     console.log("Live Demo clicked");
-    alert('Live Demo feature coming soon!');
+    window.location.href = "/demos";
   };
 
   const handleNotificationClick = () => {
@@ -48,10 +47,7 @@ export function Header({ onMenuClick }: HeaderProps) {
 
   const handleSearchClick = () => {
     console.log("Search clicked");
-    const searchTab = document.querySelector('[data-value="search"]') as HTMLElement;
-    if (searchTab) {
-      searchTab.click();
-    }
+    window.location.href = "/search";
   };
 
   const handleProfileClick = () => {
@@ -76,36 +72,36 @@ export function Header({ onMenuClick }: HeaderProps) {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 mx-6">
-          <button 
-            onClick={() => document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' })}
+          <a 
+            href="/dashboard"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Overview
-          </button>
-          <button 
-            onClick={() => document.getElementById('models')?.scrollIntoView({ behavior: 'smooth' })}
+            Dashboard
+          </a>
+          <a 
+            href="/demos"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             AI Models
-          </button>
-          <button 
-            onClick={() => document.getElementById('realtime')?.scrollIntoView({ behavior: 'smooth' })}
+          </a>
+          <a 
+            href="/analytics"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Real-time
-          </button>
-          <button 
-            onClick={() => document.getElementById('technology')?.scrollIntoView({ behavior: 'smooth' })}
+            Analytics
+          </a>
+          <a 
+            href="/docs"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Technology
-          </button>
-          <button 
-            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+            Documentation
+          </a>
+          <a 
+            href="/billing"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Pricing
-          </button>
+            Billing
+          </a>
         </nav>
 
         {/* Action Buttons */}
@@ -193,51 +189,36 @@ export function Header({ onMenuClick }: HeaderProps) {
       {isMenuOpen && (
         <div className="md:hidden border-t bg-background">
           <div className="container py-4 space-y-2">
-            <button 
-              onClick={() => {
-                document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+            <a 
+              href="/dashboard"
               className="block w-full text-left px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
             >
-              Overview
-            </button>
-            <button 
-              onClick={() => {
-                document.getElementById('models')?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+              Dashboard
+            </a>
+            <a 
+              href="/demos"
               className="block w-full text-left px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
             >
               AI Models
-            </button>
-            <button 
-              onClick={() => {
-                document.getElementById('realtime')?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+            </a>
+            <a 
+              href="/analytics"
               className="block w-full text-left px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
             >
-              Real-time
-            </button>
-            <button 
-              onClick={() => {
-                document.getElementById('technology')?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+              Analytics
+            </a>
+            <a 
+              href="/docs"
               className="block w-full text-left px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
             >
-              Technology
-            </button>
-            <button 
-              onClick={() => {
-                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                setIsMenuOpen(false);
-              }}
+              Documentation
+            </a>
+            <a 
+              href="/billing"
               className="block w-full text-left px-3 py-2 text-sm font-medium hover:bg-accent rounded-md"
             >
-              Pricing
-            </button>
+              Billing
+            </a>
             <div className="flex flex-col space-y-2 pt-2 border-t">
               <Button 
                 onClick={handleGetStarted}

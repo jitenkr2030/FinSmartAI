@@ -47,27 +47,42 @@ import {
 const menuItems = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: Home,
   },
   {
     title: "AI Models",
-    url: "#models",
+    url: "/demos",
     icon: Brain,
   },
   {
     title: "Real-time Data",
-    url: "#realtime",
+    url: "/dashboard",
     icon: Activity,
   },
   {
-    title: "Technology",
-    url: "#technology",
-    icon: Server,
+    title: "Analytics",
+    url: "/analytics",
+    icon: BarChart3,
   },
   {
-    title: "Pricing",
-    url: "#pricing",
+    title: "Search",
+    url: "/search",
+    icon: Search,
+  },
+  {
+    title: "Documentation",
+    url: "/docs",
+    icon: FileText,
+  },
+  {
+    title: "Export",
+    url: "/export",
+    icon: Database,
+  },
+  {
+    title: "Billing",
+    url: "/billing",
     icon: DollarSign,
   },
 ];
@@ -75,36 +90,31 @@ const menuItems = [
 const analyticsItems = [
   {
     title: "Market Analysis",
-    url: "#models",
+    url: "/analytics",
     icon: TrendingUp,
   },
   {
     title: "Portfolio",
-    url: "#pricing",
+    url: "/dashboard",
     icon: PieChart,
   },
   {
     title: "Reports",
-    url: "#technology",
+    url: "/export",
     icon: FileText,
   },
 ];
 
 const settingsItems = [
   {
-    title: "Search",
-    url: "#search",
-    icon: Search,
+    title: "Settings",
+    url: "#settings",
+    icon: Settings,
   },
   {
     title: "Notifications",
     url: "#notifications",
     icon: Bell,
-  },
-  {
-    title: "Settings",
-    url: "#settings",
-    icon: Settings,
   },
   {
     title: "Help & Support",
@@ -117,34 +127,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const handleNavigation = (url: string) => {
     if (url.startsWith('#')) {
       const sectionId = url.substring(1);
-      const element = document.getElementById(sectionId);
       
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        console.log(`Navigated to section: ${sectionId}`);
-      } else {
-        // Handle special actions for non-existent sections
-        switch(sectionId) {
-          case 'search':
-            console.log('Search functionality');
-            alert('Search feature coming soon!');
-            break;
-          case 'notifications':
-            console.log('Notifications panel');
-            alert('You have 3 new notifications!');
-            break;
-          case 'settings':
-            console.log('Settings panel');
-            alert('Settings panel coming soon!');
-            break;
-          case 'help':
-            console.log('Help & Support');
-            alert('Help & Support: contact@finsmartai.com');
-            break;
-          default:
-            console.log(`Section not found: ${sectionId}`);
-            alert('This section is coming soon!');
-        }
+      // Handle special actions for non-existent sections
+      switch(sectionId) {
+        case 'notifications':
+          console.log('Notifications panel');
+          alert('You have 3 new notifications!');
+          break;
+        case 'settings':
+          console.log('Settings panel');
+          alert('Settings panel coming soon!');
+          break;
+        case 'help':
+          console.log('Help & Support');
+          alert('Help & Support: contact@finsmartai.com');
+          break;
+        default:
+          console.log(`Section not found: ${sectionId}`);
+          alert('This section is coming soon!');
       }
     } else {
       // Handle regular navigation
@@ -245,10 +245,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="sm" asChild>
-              <a href="#billing" onClick={(e) => {
+              <a href="/billing" onClick={(e) => {
                 e.preventDefault();
                 console.log('Billing clicked');
-                alert('Billing & Subscription management coming soon!');
+                window.location.href = "/billing";
               }}>
                 <CreditCard />
                 <span>Billing</span>
