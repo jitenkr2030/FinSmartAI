@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -24,6 +25,7 @@ import {
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(3);
+  const { data: session } = useSession();
 
   const handleNavigation = (url: string) => {
     console.log('Navigating to:', url);
@@ -45,10 +47,10 @@ export function AppHeader() {
     alert('User profile coming soon!');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     console.log("Logout clicked");
     if (confirm('Are you sure you want to logout?')) {
-      alert('Logout functionality coming soon!');
+      await signOut({ callbackUrl: "/" });
     }
   };
 
@@ -134,14 +136,16 @@ export function AppHeader() {
           </Button>
 
           {/* Logout */}
-          <Button 
-            variant="ghost" 
-            size="icon"
-            onClick={handleLogout}
-          >
-            <LogOut className="h-4 w-4" />
-            <span className="sr-only">Logout</span>
-          </Button>
+          {session && (
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="sr-only">Logout</span>
+            </Button>
+          )}
 
           {/* Mobile Menu */}
           <Button 
@@ -174,6 +178,16 @@ export function AppHeader() {
                 {item.title}
               </Button>
             ))}
+            {session && (
+              <Button
+                variant="ghost"
+                className="w-full justify-start h-10 px-3 text-red-600 hover:text-red-700"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4 mr-2" />
+                Logout
+              </Button>
+            )}
           </div>
         </div>
       )}

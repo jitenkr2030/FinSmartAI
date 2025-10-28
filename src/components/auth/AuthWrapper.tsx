@@ -3,9 +3,6 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import LoginForm from "./LoginForm";
-import Navbar from "@/components/layout/Navbar";
-import Sidebar from "@/components/layout/Sidebar";
 
 interface AuthWrapperProps {
   children: React.ReactNode;
@@ -17,8 +14,10 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
   const isLoading = status === "loading";
 
   useEffect(() => {
+    // Only redirect if we're not loading and there's no session
     if (!isLoading && !session) {
-      router.push("/auth/signin");
+      // Use replace instead of push to avoid history issues
+      router.replace("/auth/signin");
     }
   }, [session, isLoading, router]);
 
@@ -37,19 +36,10 @@ export default function AuthWrapper({ children }: AuthWrapperProps) {
     );
   }
 
+  // If no session, return null while redirecting
   if (!session) {
-    return null; // Will redirect to signin
+    return null;
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
-      <Navbar onMenuClick={() => {}} onLogout={handleLogout} user={session.user} />
-      <Sidebar isOpen={false} onClose={() => {}} />
-      <div className="lg:ml-64">
-        <main className="p-6">
-          {children}
-        </main>
-      </div>
-    </div>
-  );
+  return <>{children}</>;
 }
