@@ -30,7 +30,8 @@ import {
   Network,
   Cpu,
   HardDrive,
-  Terminal
+  Terminal,
+  Code
 } from "lucide-react";
 
 // FinSmartAI AI Models Data
