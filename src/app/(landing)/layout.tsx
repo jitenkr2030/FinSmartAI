@@ -42,15 +42,11 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
-      >
-        <SessionProviderWrapper>
-          {children}
-        </SessionProviderWrapper>
-        <Toaster />
-      </body>
-    </html>
+    <>
+      <SessionProviderWrapper>
+        {children}
+      </SessionProviderWrapper>
+      <Toaster />
+    </>
   );
 }

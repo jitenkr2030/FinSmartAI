@@ -244,3 +244,84 @@
 {"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:17:21.072Z"}
 {"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:17:21.075Z"}
 {"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:17:21.076Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:47:40.433Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:47:40.432Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:47:40.434Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:47:40.434Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:47:40.435Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:47:40.435Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:47:40.439Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:47:40.442Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:47:40.442Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:47:40.493Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:47:40.493Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:47:40.494Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:47:40.528Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:47:40.529Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:47:40.530Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:47:40.558Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:47:40.559Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:47:40.559Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:47:45.131Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:47:45.133Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:47:45.134Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:47:45.447Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:47:45.449Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:47:45.449Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:47:45.633Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:47:45.633Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:47:45.634Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:48:48.347Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:48:48.349Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:48:48.349Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:48:48.383Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:48:48.384Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:48:48.384Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:48:48.521Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:48:48.522Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:48:48.523Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:52:17.603Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:52:17.603Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:52:17.604Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:52:17.605Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:52:17.605Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:52:17.606Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:52:17.705Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:52:17.706Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:52:17.707Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:52:17.709Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:52:17.712Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:52:17.713Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:52:17.738Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:52:17.739Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:52:17.739Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:52:22.227Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:52:22.229Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:52:22.230Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:52:22.585Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:52:22.587Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:52:22.587Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:52:22.831Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:52:22.832Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:52:22.832Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:54:21.215Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:54:21.216Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:54:21.217Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:54:21.216Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:54:21.219Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:54:21.219Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:54:21.264Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:54:21.265Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:54:21.266Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:54:21.356Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:54:21.357Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:54:21.358Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:54:25.892Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:54:25.894Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:54:25.895Z"}
+{"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T10:54:26.209Z"}
+{"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T10:54:26.210Z"}
+{"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T10:54:26.211Z"}
+{"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T10:54:26.522Z"}
+{"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T10:54:26.523Z"}
+{"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T10:54:26.524Z"}
