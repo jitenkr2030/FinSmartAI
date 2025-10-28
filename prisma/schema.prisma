@@ -1,0 +1,511 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Users and Authentication
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  passwordHash    String   @map("password_hash")
+  fullName        String   @map("full_name")
+  phone           String?
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  isActive        Boolean  @default(true) @map("is_active")
+  emailVerified   Boolean  @default(false) @map("email_verified")
+  
+  // Relations
+  subscriptions   UserSubscription[]
+  predictions     Prediction[]
+  apiUsage        ApiUsage[]
+  portfolios      Portfolio[]
+  strategies      TradingStrategy[]
+  taxCalculations TaxCalculation[]
+  exportJobs      ExportJob[]
+  scheduledExports ScheduledExport[]
+  
+  // Indexes
+  @@index([isActive])
+  @@index([createdAt])
+  
+  @@map("users")
+}
+
+// Subscription Plans
+model SubscriptionPlan {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  durationDays Int     @map("duration_days")
+  features    String   // JSON string of features
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  subscriptions UserSubscription[]
+  
+  @@map("subscription_plans")
+}
+
+// User Subscriptions
+model UserSubscription {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  planId          String   @map("plan_id")
+  status          String   @default("active") // active, cancelled, expired
+  startedAt       DateTime @default(now()) @map("started_at")
+  endsAt          DateTime? @map("ends_at")
+  paymentMethodId String?  @map("payment_method_id")
+  createdAt       DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan   SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  
+  @@map("user_subscriptions")
+}
+
+// AI Models
+model AIModel {
+  id                 String   @id @default(cuid())
+  name               String   @unique
+  description        String?
+  version            String
+  modelType          String   @map("model_type")
+  architecture       String   // JSON string
+  trainingDataInfo   String   // JSON string @map("training_data_info")
+  performanceMetrics String   // JSON string @map("performance_metrics")
+  isActive           Boolean  @default(true) @map("is_active")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  predictions Prediction[]
+  
+  // Indexes
+  @@index([isActive])
+  @@index([modelType])
+  @@index([name])
+  
+  @@map("ai_models")
+}
+
+// Data Sources
+model DataSource {
+  id            String   @id @default(cuid())
+  name          String
+  type          String
+  apiEndpoint   String?  @map("api_endpoint")
+  apiKey        String?  @map("api_key")
+  rateLimit     Int?     @map("rate_limit")
+  isActive      Boolean  @default(true) @map("is_active")
+  lastUpdated   DateTime? @map("last_updated")
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  @@map("data_sources")
+}
+
+// API Usage Tracking
+model ApiUsage {
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
+  modelName        String   @map("model_name")
+  endpoint         String
+  requestData      String   // JSON string @map("request_data")
+  responseData     String   // JSON string @map("response_data")
+  processingTimeMs Int     @map("processing_time_ms")
+  cost             Float?
+  createdAt        DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Indexes
+  @@index([userId])
+  @@index([modelName])
+  @@index([endpoint])
+  @@index([createdAt])
+  
+  @@map("api_usage")
+}
+
+// Model Predictions
+model Prediction {
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
+  modelId          String   @map("model_id")
+  modelName        String   @map("model_name")
+  modelVersion     String   @map("model_version")
+  inputData        String   // JSON string @map("input_data")
+  outputData       String   // JSON string @map("output_data")
+  confidenceScore  Float?   @map("confidence_score")
+  processingTimeMs Int     @map("processing_time_ms")
+  createdAt        DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  model   AIModel @relation(fields: [modelId], references: [id], onDelete: Cascade)
+  
+  // Indexes
+  @@index([userId])
+  @@index([modelId])
+  @@index([modelName])
+  @@index([createdAt])
+  
+  @@map("predictions")
+}
+
+// Financial Instruments (for tracking stocks, options, etc.)
+model FinancialInstrument {
+  id          String   @id @default(cuid())
+  symbol      String   @unique
+  name        String
+  type        String   // stock, option, future, commodity, forex, etc.
+  exchange    String
+  currency    String
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Indexes
+  @@index([symbol])
+  @@index([type, exchange])
+  
+  @@map("financial_instruments")
+}
+
+// Market Data
+model MarketData {
+  id           String   @id @default(cuid())
+  instrumentId String   @map("instrument_id")
+  timestamp    DateTime
+  open         Float?
+  high         Float?
+  low          Float?
+  close        Float?
+  volume       Int?
+  dataSource   String   @map("data_source")
+  
+  // Indexes
+  @@index([instrumentId, timestamp])
+  @@index([timestamp])
+  
+  @@map("market_data")
+}
+
+// News Articles for Sentiment Analysis
+model NewsArticle {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  source      String
+  url         String?
+  publishedAt DateTime @map("published_at")
+  sentiment   Float?   // -1 to 1 sentiment score
+  relevance   Float?   // 0 to 1 relevance score
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("news_articles")
+}
+
+// Social Media Posts for Sentiment Analysis
+model SocialMediaPost {
+  id          String   @id @default(cuid())
+  platform    String   // twitter, reddit, etc.
+  content     String
+  author      String?
+  url         String?
+  postedAt    DateTime @map("posted_at")
+  sentiment   Float?   // -1 to 1 sentiment score
+  relevance   Float?   // 0 to 1 relevance score
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("social_media_posts")
+}
+
+// Portfolio for RiskAI
+model Portfolio {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  name        String
+  description String?
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  holdings   PortfolioHolding[]
+  riskMetrics PortfolioRiskMetric[]
+  
+  // Indexes
+  @@index([userId, isActive])
+  @@index([createdAt])
+  
+  @@map("portfolios")
+}
+
+// Portfolio Holdings
+model PortfolioHolding {
+  id          String   @id @default(cuid())
+  portfolioId String   @map("portfolio_id")
+  instrumentId String  @map("instrument_id")
+  quantity    Float
+  avgPrice    Float    @map("avg_price")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  
+  @@map("portfolio_holdings")
+}
+
+// Portfolio Risk Metrics
+model PortfolioRiskMetric {
+  id          String   @id @default(cuid())
+  portfolioId String   @map("portfolio_id")
+  metricType  String   @map("metric_type") // var, cvar, beta, sharpe, etc.
+  value       Float
+  timestamp   DateTime @default(now()) @map("timestamp")
+  
+  // Relations
+  portfolio Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+  
+  @@map("portfolio_risk_metrics")
+}
+
+// Trading Strategies for AlphaAI
+model TradingStrategy {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  name        String
+  description String?
+  modelConfig String   // JSON string @map("model_config")
+  parameters  String   // JSON string
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  user       User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  backtests  StrategyBacktest[]
+  
+  @@map("trading_strategies")
+}
+
+// Strategy Backtests
+model StrategyBacktest {
+  id             String   @id @default(cuid())
+  strategyId     String   @map("strategy_id")
+  startDate      DateTime @map("start_date")
+  endDate        DateTime @map("end_date")
+  initialCapital Float    @map("initial_capital")
+  finalValue     Float    @map("final_value")
+  returns        Float
+  sharpeRatio    Float?   @map("sharpe_ratio")
+  maxDrawdown    Float?   @map("max_drawdown")
+  winRate        Float?   @map("win_rate")
+  trades         Int?
+  config         String   // JSON string
+  createdAt      DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  strategy TradingStrategy @relation(fields: [strategyId], references: [id], onDelete: Cascade)
+  
+  @@map("strategy_backtests")
+}
+
+// FII/DII Flow Data for FundFlowAI
+model InstitutionalFlow {
+  id          String   @id @default(cuid())
+  date        DateTime
+  fiiBuy      Float    @map("fii_buy")
+  fiiSell     Float    @map("fii_sell")
+  fiiNet      Float    @map("fii_net")
+  diiBuy      Float    @map("dii_buy")
+  diiSell     Float    @map("dii_sell")
+  diiNet      Float    @map("dii_net")
+  segment     String?  // cash, derivatives, etc.
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("institutional_flows")
+}
+
+// Option Chain Data for OptionsAI
+model OptionChain {
+  id          String   @id @default(cuid())
+  underlying  String
+  expiry      DateTime
+  strike      Float
+  optionType  String   @map("option_type") // call, put
+  lastPrice   Float?   @map("last_price")
+  bid         Float?
+  ask         Float?
+  volume      Int?
+  openInterest Int?    @map("open_interest")
+  impliedVolatility Float? @map("implied_volatility")
+  delta       Float?
+  gamma       Float?
+  theta       Float?
+  vega        Float?
+  timestamp   DateTime @default(now()) @map("timestamp")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("option_chains")
+}
+
+// Options Strategy Analysis for OptionsAI
+model OptionsStrategy {
+  id            String   @id @default(cuid())
+  name          String
+  underlying    String
+  strategyType  String   @map("strategy_type") // long_call, covered_call, straddle, etc.
+  status        String   // analyzed, active, closed
+  riskLevel     String   @map("risk_level") // low, medium, high
+  maxProfit     Float?   @map("max_profit")
+  maxLoss       Float?   @map("max_loss")
+  breakEvenPoints String @map("break_even_points") // JSON string
+  probability   Float    // 0 to 1 probability of success
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  @@map("options_strategies")
+}
+
+// Option Greeks Calculations for OptionsAI
+model OptionGreeks {
+  id          String   @id @default(cuid())
+  underlying  String
+  strike      Float
+  expiry      DateTime
+  optionType  String   @map("option_type") // call, put
+  delta       Float
+  gamma       Float
+  theta       Float
+  vega        Float
+  rho         Float
+  impliedVol  Float    @map("implied_vol")
+  spotPrice   Float    @map("spot_price")
+  calculatedAt DateTime @map("calculated_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("option_greeks")
+}
+
+// Fund Flow Analysis for FundFlowAI
+model FundFlowAnalysis {
+  id            String   @id @default(cuid())
+  startDate     DateTime @map("start_date")
+  endDate       DateTime @map("end_date")
+  segment       String
+  fiiNetFlow    Float    @map("fii_net_flow")
+  diiNetFlow    Float    @map("dii_net_flow")
+  totalNetFlow  Float    @map("total_net_flow")
+  sentiment     String
+  confidence    Float
+  predictions   String   // JSON string
+  recommendations String // JSON string
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  @@map("fund_flow_analyses")
+}
+
+// Flow Predictions for FundFlowAI
+model FlowPrediction {
+  id              String   @id @default(cuid())
+  predictionDate   DateTime @map("prediction_date")
+  daysAhead       Int      @map("days_ahead")
+  segment         String
+  predictedFiiFlow Float    @map("predicted_fii_flow")
+  predictedDiiFlow Float    @map("predicted_dii_flow")
+  confidence      Float
+  modelUsed       String   @map("model_used")
+  predictions     String   // JSON string
+  createdAt       DateTime @default(now()) @map("created_at")
+  
+  @@map("flow_predictions")
+}
+
+// Tax Calculations for TaxAI
+model TaxCalculation {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  financialYear String @map("financial_year")
+  incomeType  String   @map("income_type") // salary, business, capital_gains, etc.
+  incomeAmount Float  @map("income_amount")
+  taxAmount   Float    @map("tax_amount")
+  deductions  String   // JSON string
+  calculations String  // JSON string
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("tax_calculations")
+}
+
+// Export Jobs for Data Export System
+model ExportJob {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  type          String   // data, report
+  format        String   // csv, excel, pdf, json, xml
+  status        String   // pending, processing, completed, failed
+  progress      Int      @default(0)
+  fileName      String?
+  downloadUrl   String?  @map("download_url")
+  errorMessage String?  @map("error_message")
+  createdAt     DateTime @default(now()) @map("created_at")
+  completedAt   DateTime? @map("completed_at")
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("export_jobs")
+}
+
+// Scheduled Exports for Data Export System
+model ScheduledExport {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  name        String
+  templateId  String   @map("template_id")
+  format      String   // csv, excel, pdf, json, xml
+  schedule    String   // daily, weekly, monthly, quarterly
+  nextRun     DateTime @map("next_run")
+  isActive    Boolean  @default(true) @map("is_active")
+  recipients  String   // JSON array of email addresses
+  createdAt   DateTime @default(now()) @map("created_at")
+  lastRun     DateTime? @map("last_run")
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("scheduled_exports")
+}
+
+// Report Templates for Data Export System
+model ReportTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  format      String   // csv, excel, pdf, json, xml
+  sections    String   // JSON string of sections
+  isDefault   Boolean  @default(false) @map("is_default")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  @@map("report_templates")
+}
