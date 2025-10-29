@@ -19,17 +19,9 @@ export const metadata: Metadata = {
   description: "Empowering financial decisions with 12 specialized AI models, 25+ API endpoints, and cutting-edge machine learning technology",
   keywords: ["FinSmartAI", "Financial AI", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React", "Trading", "Investment"],
   authors: [{ name: "FinSmartAI Team" }],
-<<<<<<< HEAD
-<<<<<<< HEAD
   icons: {
     icon: "/logo.svg",
   },
-=======
-
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
-=======
-
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
   openGraph: {
     title: "FinSmartAI - Complete Financial AI Ecosystem",
     description: "Empowering financial decisions with 12 specialized AI models and cutting-edge machine learning technology",
@@ -63,12 +55,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
-=======
-}
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
