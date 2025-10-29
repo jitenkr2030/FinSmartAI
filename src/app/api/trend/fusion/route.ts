@@ -242,7 +242,7 @@ async function generateSentimentForecast(ai, asset, forecastHorizon) {
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -303,7 +303,7 @@ async function generateTechnicalForecast(ai, asset, forecastHorizon) {
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -374,7 +374,7 @@ async function generateFundamentalForecast(ai, asset, forecastHorizon) {
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -445,7 +445,7 @@ async function generateMacroForecast(ai, asset, forecastHorizon) {
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -656,7 +656,7 @@ async function performFusionAnalysis(ai, individualForecasts, fusionMethod, conf
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -823,7 +823,7 @@ async function generateFusionTradingRecommendations(ai, unifiedPredictions, fusi
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',

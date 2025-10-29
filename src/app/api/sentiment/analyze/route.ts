@@ -22,14 +22,6 @@ export const POST = withValidation(
       let sentimentResult;
       try {
         const completion = await ai.chat.completions.create({
-
-      // Initialize AI SDK
-      
-      // Perform sentiment analysis using AI
-      let sentimentResult;
-      try {
-        const completion = await ai.chat.completions.create({
-
           messages: [
             {
               role: 'system',

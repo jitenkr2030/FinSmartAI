@@ -72,12 +72,6 @@ export async function POST(request: NextRequest) {
     let riskAnalysis;
     try {
       const completion = await ai.chat.completions.create({
-
-    // Perform risk analysis using AI
-    let riskAnalysis;
-    try {
-      const completion = await ai.chat.completions.create({
-
         messages: [
           {
             role: 'system',

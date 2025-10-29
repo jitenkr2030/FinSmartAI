@@ -64,9 +64,6 @@ export async function POST(request: NextRequest) {
       // In production, you would use specific model endpoints
 
       const completion = await ai.chat.completions.create({
-
-      const completion = await ai.chat.completions.create({
-
         messages: [
           {
             role: 'system',

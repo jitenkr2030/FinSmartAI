@@ -239,7 +239,7 @@ async function generateTaxOptimization(ai, financialData, taxRegime, businessTyp
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -426,7 +426,7 @@ async function generateTaxPlanning(ai, financialData, taxOptimization, businessT
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -515,7 +515,7 @@ async function generateRegimeComparison(ai, financialData, businessType, financi
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',

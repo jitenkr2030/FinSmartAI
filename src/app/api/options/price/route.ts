@@ -76,12 +76,6 @@ export async function POST(request: NextRequest) {
     let pricingResult;
     try {
       const completion = await ai.chat.completions.create({
-
-    // Perform option pricing using AI
-    let pricingResult;
-    try {
-      const completion = await ai.chat.completions.create({
-
         messages: [
           {
             role: 'system',

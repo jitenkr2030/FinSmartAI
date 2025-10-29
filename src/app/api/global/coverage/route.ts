@@ -10,7 +10,8 @@ import AI from 'z-ai-web-dev-sdk';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    // Initialize AI SDK    const ai = await AI.create();\
+    // Initialize AI SDK
+    const ai = await AI.create();
     const {
       regions = ['US', 'Europe', 'Asia', 'Emerging'],
       assetClasses = ['equities', 'bonds', 'commodities', 'currencies'],
@@ -40,11 +41,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
-
-    // Initialize AI SDK
-
-    // Initialize AI SDK
 
 
     // Generate regional analysis
@@ -396,9 +392,6 @@ async function generateAssetClassAnalysis(ai, regions, assetClasses, timeframe, 
 
 
     const completion = await ai.chat.completions.create({
-
-    const completion = await ai.chat.completions.create({
-
       messages: [
         {
           role: 'system',
@@ -539,7 +532,7 @@ async function generateCorrelationAnalysis(ai, regions, assetClasses, timeframe)
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -680,7 +673,7 @@ async function generateGlobalRiskAnalysis(ai, regions, assetClasses, timeframe) 
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -833,7 +826,7 @@ async function generateGlobalOpportunities(ai, regions, assetClasses, timeframe)
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -931,7 +924,7 @@ async function generateGlobalPortfolioRecommendations(ai, regionalAnalysis, asse
     }
   `;
 
-
+  const completion = await ai.chat.completions.create({
     messages: [
       {
         role: 'system',
