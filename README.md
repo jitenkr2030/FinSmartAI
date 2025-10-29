@@ -442,7 +442,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [Z.ai](https://chat.z.ai) for AI-powered development assistance
 - [Next.js](https://nextjs.org/) for the amazing React framework
 - [Prisma](https://prisma.io/) for the modern database toolkit
 - [shadcn/ui](https://ui.shadcn.com/) for the beautiful component library
@@ -472,6 +471,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Built with ❤️ for the financial community. Powered by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ for the financial community.
 
 **FinSmartAI** - Making intelligent financial analysis accessible to everyone.
