@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/news/batch - Batch process multiple news articles with advanced analysis
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    // Initialize AI SDK    const ai = await AI.create();\
     const {
       articles,
       analysisType = 'comprehensive', // basic, comprehensive, deep
@@ -34,13 +35,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
+
     // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    // Initialize AI SDK
+
 
     // Process articles in batches to avoid overwhelming the AI
     const batchSize = 10;
@@ -48,7 +47,7 @@ export async function POST(request: NextRequest) {
 
     for (let i = 0; i < articles.length; i += batchSize) {
       const batch = articles.slice(i, i + batchSize);
-      const batchResults = await processBatch(batch, zai, analysisType, includeMarketImpact, includeTrendAnalysis);
+      const batchResults = await processBatch(batch, ai, analysisType, includeMarketImpact, includeTrendAnalysis);
       results.push(...batchResults);
     }
 
@@ -113,7 +112,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function processBatch(articles, zai, analysisType, includeMarketImpact, includeTrendAnalysis) {
+async function processBatch(articles, ai, analysisType, includeMarketImpact, includeTrendAnalysis) {
   const batchResults = await Promise.all(
     articles.map(async (article) => {
       try {
@@ -129,11 +128,8 @@ async function processBatch(articles, zai, analysisType, includeMarketImpact, in
         // Create analysis prompt based on analysis type
         const prompt = createAnalysisPrompt(title, content, source, analysisType, includeMarketImpact, includeTrendAnalysis);
 
-<<<<<<< HEAD
+
         const completion = await ai.chat.completions.create({
-=======
-        const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
           messages: [
             {
               role: 'system',

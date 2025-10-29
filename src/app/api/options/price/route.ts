@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/options/price - Price options using AI models
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    // Initialize AI SDK    const ai = await AI.create();\
     const { 
       underlying, 
       strike, 
@@ -41,13 +42,11 @@ export async function POST(request: NextRequest) {
     
     const startTime = Date.now();
     
-<<<<<<< HEAD
+
     // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    // Initialize AI SDK
+
     
     // Prepare option data for pricing
     const optionData = {
@@ -72,17 +71,17 @@ export async function POST(request: NextRequest) {
       );
     }
     
-<<<<<<< HEAD
+
     // Perform option pricing using AI
     let pricingResult;
     try {
       const completion = await ai.chat.completions.create({
-=======
-    // Perform option pricing using ZAI
+
+    // Perform option pricing using AI
     let pricingResult;
     try {
-      const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+      const completion = await ai.chat.completions.create({
+
         messages: [
           {
             role: 'system',

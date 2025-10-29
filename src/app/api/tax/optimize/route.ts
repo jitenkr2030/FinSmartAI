@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/tax/optimize - Optimize tax calculations using AI
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    // Initialize AI SDK    const ai = await AI.create();\
     const {
       financialData,
       taxRegime = 'new', // old, new
@@ -43,17 +44,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
+
     // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    // Initialize AI SDK
+
 
     // Generate tax optimization
     const taxOptimization = await generateTaxOptimization(
-      zai, 
+      ai, 
       financialData, 
       taxRegime, 
       businessType, 
@@ -64,10 +63,10 @@ export async function POST(request: NextRequest) {
     );
 
     // Generate tax planning recommendations
-    const taxPlanning = await generateTaxPlanning(zai, financialData, taxOptimization, businessType);
+    const taxPlanning = await generateTaxPlanning(ai, financialData, taxOptimization, businessType);
 
     // Calculate comparison between old and new regime
-    const regimeComparison = await generateRegimeComparison(zai, financialData, businessType, financialYear);
+    const regimeComparison = await generateRegimeComparison(ai, financialData, businessType, financialYear);
 
     // Store tax calculation in database
     const storedCalculation = await storeTaxCalculationInDatabase(
@@ -136,7 +135,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateTaxOptimization(zai, financialData, taxRegime, businessType, financialYear, includeDeductions, includeTaxPlanning, integration) {
+async function generateTaxOptimization(ai, financialData, taxRegime, businessType, financialYear, includeDeductions, includeTaxPlanning, integration) {
   const prompt = `
     Optimize tax calculation for the following financial data:
     
@@ -240,11 +239,7 @@ async function generateTaxOptimization(zai, financialData, taxRegime, businessTy
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -357,7 +352,7 @@ function calculateEstimatedTax(income, regime, businessType) {
   }
 }
 
-async function generateTaxPlanning(zai, financialData, taxOptimization, businessType) {
+async function generateTaxPlanning(ai, financialData, taxOptimization, businessType) {
   const prompt = `
     Generate comprehensive tax planning recommendations based on the following data:
     
@@ -431,11 +426,7 @@ async function generateTaxPlanning(zai, financialData, taxOptimization, business
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -475,7 +466,7 @@ async function generateTaxPlanning(zai, financialData, taxOptimization, business
   }
 }
 
-async function generateRegimeComparison(zai, financialData, businessType, financialYear) {
+async function generateRegimeComparison(ai, financialData, businessType, financialYear) {
   const prompt = `
     Compare old and new tax regimes for the following financial data:
     
@@ -524,11 +515,7 @@ async function generateRegimeComparison(zai, financialData, businessType, financ
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',

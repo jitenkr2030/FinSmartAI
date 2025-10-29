@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/global/coverage - Global market coverage analysis
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    // Initialize AI SDK    const ai = await AI.create();\
     const {
       regions = ['US', 'Europe', 'Asia', 'Emerging'],
       assetClasses = ['equities', 'bonds', 'commodities', 'currencies'],
@@ -40,17 +41,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
+
     // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    // Initialize AI SDK
+
 
     // Generate regional analysis
     const regionalAnalysis = await generateRegionalAnalysis(
-      zai, 
+      ai, 
       regions, 
       assetClasses, 
       timeframe, 
@@ -59,7 +58,7 @@ export async function POST(request: NextRequest) {
 
     // Generate asset class analysis
     const assetClassAnalysis = await generateAssetClassAnalysis(
-      zai, 
+      ai, 
       regions, 
       assetClasses, 
       timeframe, 
@@ -70,7 +69,7 @@ export async function POST(request: NextRequest) {
     let correlationAnalysis = null;
     if (includeCorrelation) {
       correlationAnalysis = await generateCorrelationAnalysis(
-        zai, 
+        ai, 
         regions, 
         assetClasses, 
         timeframe
@@ -81,7 +80,7 @@ export async function POST(request: NextRequest) {
     let riskAnalysis = null;
     if (includeRiskAnalysis) {
       riskAnalysis = await generateGlobalRiskAnalysis(
-        zai, 
+        ai, 
         regions, 
         assetClasses, 
         timeframe
@@ -92,7 +91,7 @@ export async function POST(request: NextRequest) {
     let opportunities = null;
     if (includeOpportunities) {
       opportunities = await generateGlobalOpportunities(
-        zai, 
+        ai, 
         regions, 
         assetClasses, 
         timeframe
@@ -101,7 +100,7 @@ export async function POST(request: NextRequest) {
 
     // Generate global portfolio recommendations
     const portfolioRecommendations = await generateGlobalPortfolioRecommendations(
-      zai, 
+      ai, 
       regionalAnalysis, 
       assetClassAnalysis, 
       correlationAnalysis, 
@@ -185,7 +184,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateRegionalAnalysis(zai, regions, assetClasses, timeframe, analysisDepth) {
+async function generateRegionalAnalysis(ai, regions, assetClasses, timeframe, analysisDepth) {
   const analysis = {};
 
   for (const region of regions) {
@@ -251,11 +250,7 @@ async function generateRegionalAnalysis(zai, regions, assetClasses, timeframe, a
       }
     `;
 
-<<<<<<< HEAD
     const completion = await ai.chat.completions.create({
-=======
-    const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
       messages: [
         {
           role: 'system',
@@ -331,7 +326,7 @@ function generateFallbackRegionalAnalysis(region) {
   };
 }
 
-async function generateAssetClassAnalysis(zai, regions, assetClasses, timeframe, analysisDepth) {
+async function generateAssetClassAnalysis(ai, regions, assetClasses, timeframe, analysisDepth) {
   const analysis = {};
 
   for (const assetClass of assetClasses) {
@@ -399,11 +394,11 @@ async function generateAssetClassAnalysis(zai, regions, assetClasses, timeframe,
       }
     `;
 
-<<<<<<< HEAD
+
     const completion = await ai.chat.completions.create({
-=======
-    const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    const completion = await ai.chat.completions.create({
+
       messages: [
         {
           role: 'system',
@@ -491,7 +486,7 @@ function generateFallbackAssetClassAnalysis(assetClass, regions) {
   };
 }
 
-async function generateCorrelationAnalysis(zai, regions, assetClasses, timeframe) {
+async function generateCorrelationAnalysis(ai, regions, assetClasses, timeframe) {
   const prompt = `
     Generate correlation analysis for the following regions and asset classes:
     
@@ -544,11 +539,7 @@ async function generateCorrelationAnalysis(zai, regions, assetClasses, timeframe
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -617,7 +608,7 @@ function generateFallbackCorrelationAnalysis(regions, assetClasses) {
   };
 }
 
-async function generateGlobalRiskAnalysis(zai, regions, assetClasses, timeframe) {
+async function generateGlobalRiskAnalysis(ai, regions, assetClasses, timeframe) {
   const prompt = `
     Generate global risk analysis for the following regions and asset classes:
     
@@ -689,11 +680,7 @@ async function generateGlobalRiskAnalysis(zai, regions, assetClasses, timeframe)
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -771,7 +758,7 @@ function generateFallbackRiskAnalysis(regions) {
   };
 }
 
-async function generateGlobalOpportunities(zai, regions, assetClasses, timeframe) {
+async function generateGlobalOpportunities(ai, regions, assetClasses, timeframe) {
   const prompt = `
     Generate global investment opportunities for the following regions and asset classes:
     
@@ -846,11 +833,7 @@ async function generateGlobalOpportunities(zai, regions, assetClasses, timeframe
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -897,7 +880,7 @@ function generateFallbackOpportunities(regions, assetClasses) {
   };
 }
 
-async function generateGlobalPortfolioRecommendations(zai, regionalAnalysis, assetClassAnalysis, correlationAnalysis, riskAnalysis) {
+async function generateGlobalPortfolioRecommendations(ai, regionalAnalysis, assetClassAnalysis, correlationAnalysis, riskAnalysis) {
   const prompt = `
     Generate global portfolio recommendations based on the following analyses:
     
@@ -948,11 +931,7 @@ async function generateGlobalPortfolioRecommendations(zai, regionalAnalysis, ass
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',

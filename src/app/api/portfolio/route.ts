@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+
+import AI from 'z-ai-web-dev-sdk';
 import { OptimizedQueries, QueryOptimizer } from '@/lib/utils/queryOptimization';
 
 // GET /api/portfolio - List user portfolios

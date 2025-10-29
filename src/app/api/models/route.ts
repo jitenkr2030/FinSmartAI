@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
+import AI from 'z-ai-web-dev-sdk';
+
 // GET /api/models - List all AI models
 export async function GET(request: NextRequest) {
   try {

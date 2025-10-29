@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/alpha/generate - Generate automated trading strategies using AI
 export async function POST(request: NextRequest) {
@@ -52,17 +52,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
-    // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
-    // Generate trading strategy
+  
+
+
+    // Initialize AI SDK
+  const ai = await AI.create();
+
+  // Generate trading strategy
     const strategy = await generateTradingStrategy(
-      zai, 
+      ai, 
       assets, 
       strategyType, 
       timeframe, 
@@ -74,13 +73,13 @@ export async function POST(request: NextRequest) {
     );
 
     // Generate backtest results
-    const backtestResults = await generateBacktestResults(zai, strategy, assets, backtestPeriod);
+    const backtestResults = await generateBacktestResults(ai, strategy, assets, backtestPeriod);
 
     // Generate risk metrics
     const riskMetrics = calculateStrategyRiskMetrics(backtestResults);
 
     // Generate optimization recommendations
-    const optimization = includeOptimization ? await generateOptimizationRecommendations(zai, strategy, backtestResults) : null;
+    const optimization = includeOptimization ? await generateOptimizationRecommendations(ai, strategy, backtestResults) : null;
 
     // Store strategy in database
     const storedStrategy = await storeStrategyInDatabase(strategy, backtestResults, riskMetrics);
@@ -149,7 +148,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateTradingStrategy(zai, assets, strategyType, timeframe, riskTolerance, capital, backtestPeriod, includeOptimization, includeRiskManagement) {
+async function generateTradingStrategy(ai, assets, strategyType, timeframe, riskTolerance, capital, backtestPeriod, includeOptimization, includeRiskManagement) {
   const prompt = `
     Generate a ${strategyType} trading strategy for the following parameters:
     
@@ -295,11 +294,7 @@ async function generateTradingStrategy(zai, assets, strategyType, timeframe, ris
     }
   `;
 
-<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -432,7 +427,7 @@ function generateFallbackStrategy(assets, strategyType, timeframe, riskTolerance
   };
 }
 
-async function generateBacktestResults(zai, strategy, assets, backtestPeriod) {
+async function generateBacktestResults(ai, strategy, assets, backtestPeriod) {
   const prompt = `
     Generate backtest results for the following trading strategy:
     
@@ -502,11 +497,8 @@ async function generateBacktestResults(zai, strategy, assets, backtestPeriod) {
     }
   `;
 
-<<<<<<< HEAD
+
   const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -600,7 +592,7 @@ function calculateStabilityScore(returns) {
   return Math.min(10, (consistency * 5) + (1 / (1 + returnStd) * 5));
 }
 
-async function generateOptimizationRecommendations(zai, strategy, backtestResults) {
+async function generateOptimizationRecommendations(ai, strategy, backtestResults) {
   const prompt = `
     Generate optimization recommendations for the following trading strategy and backtest results:
     
@@ -673,11 +665,8 @@ async function generateOptimizationRecommendations(zai, strategy, backtestResult
     }
   `;
 
-<<<<<<< HEAD
+
   const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/trend/fusion - Unified forecasting using multi-modal fusion
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    // Initialize AI SDK    const ai = await AI.create();\
     const {
       assets,
       forecastHorizon = 30, // days
@@ -52,17 +53,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
+
     // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+    // Initialize AI SDK
+
 
     // Generate individual model forecasts
     const individualForecasts = await generateIndividualForecasts(
-      zai, 
+      ai, 
       assets, 
       forecastHorizon, 
       includeSentiment, 
@@ -74,7 +73,7 @@ export async function POST(request: NextRequest) {
 
     // Perform fusion analysis
     const fusionResult = await performFusionAnalysis(
-      zai, 
+      ai, 
       individualForecasts, 
       fusionMethod, 
       confidenceLevel
@@ -82,7 +81,7 @@ export async function POST(request: NextRequest) {
 
     // Generate unified predictions
     const unifiedPredictions = await generateUnifiedPredictions(
-      zai, 
+      ai, 
       fusionResult, 
       assets, 
       forecastHorizon
@@ -93,7 +92,7 @@ export async function POST(request: NextRequest) {
 
     // Generate trading recommendations
     const tradingRecommendations = await generateFusionTradingRecommendations(
-      zai, 
+      ai, 
       unifiedPredictions, 
       fusionMetrics
     );
@@ -170,7 +169,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateIndividualForecasts(zai, assets, forecastHorizon, includeSentiment, includeTechnical, includeFundamental, includeMacro, historicalData) {
+async function generateIndividualForecasts(ai, assets, forecastHorizon, includeSentiment, includeTechnical, includeFundamental, includeMacro, historicalData) {
   const forecasts = {};
 
   for (const asset of assets) {
@@ -182,19 +181,19 @@ async function generateIndividualForecasts(zai, assets, forecastHorizon, include
     };
 
     if (includeSentiment) {
-      assetForecast.sentiment = await generateSentimentForecast(zai, asset, forecastHorizon);
+      assetForecast.sentiment = await generateSentimentForecast(ai, asset, forecastHorizon);
     }
 
     if (includeTechnical) {
-      assetForecast.technical = await generateTechnicalForecast(zai, asset, forecastHorizon);
+      assetForecast.technical = await generateTechnicalForecast(ai, asset, forecastHorizon);
     }
 
     if (includeFundamental) {
-      assetForecast.fundamental = await generateFundamentalForecast(zai, asset, forecastHorizon);
+      assetForecast.fundamental = await generateFundamentalForecast(ai, asset, forecastHorizon);
     }
 
     if (includeMacro) {
-      assetForecast.macro = await generateMacroForecast(zai, asset, forecastHorizon);
+      assetForecast.macro = await generateMacroForecast(ai, asset, forecastHorizon);
     }
 
     forecasts[asset] = assetForecast;
@@ -203,7 +202,7 @@ async function generateIndividualForecasts(zai, assets, forecastHorizon, include
   return forecasts;
 }
 
-async function generateSentimentForecast(zai, asset, forecastHorizon) {
+async function generateSentimentForecast(ai, asset, forecastHorizon) {
   const prompt = `
     Generate sentiment forecast for ${asset} over ${forecastHorizon} days.
     
@@ -243,11 +242,7 @@ async function generateSentimentForecast(zai, asset, forecastHorizon) {
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -271,7 +266,7 @@ async function generateSentimentForecast(zai, asset, forecastHorizon) {
   }
 }
 
-async function generateTechnicalForecast(zai, asset, forecastHorizon) {
+async function generateTechnicalForecast(ai, asset, forecastHorizon) {
   const prompt = `
     Generate technical forecast for ${asset} over ${forecastHorizon} days.
     
@@ -308,11 +303,7 @@ async function generateTechnicalForecast(zai, asset, forecastHorizon) {
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -336,7 +327,7 @@ async function generateTechnicalForecast(zai, asset, forecastHorizon) {
   }
 }
 
-async function generateFundamentalForecast(zai, asset, forecastHorizon) {
+async function generateFundamentalForecast(ai, asset, forecastHorizon) {
   const prompt = `
     Generate fundamental forecast for ${asset} over ${forecastHorizon} days.
     
@@ -383,11 +374,7 @@ async function generateFundamentalForecast(zai, asset, forecastHorizon) {
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -411,7 +398,7 @@ async function generateFundamentalForecast(zai, asset, forecastHorizon) {
   }
 }
 
-async function generateMacroForecast(zai, asset, forecastHorizon) {
+async function generateMacroForecast(ai, asset, forecastHorizon) {
   const prompt = `
     Generate macroeconomic forecast affecting ${asset} over ${forecastHorizon} days.
     
@@ -458,11 +445,7 @@ async function generateMacroForecast(zai, asset, forecastHorizon) {
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -631,7 +614,7 @@ function generateFallbackMacroForecast() {
   };
 }
 
-async function performFusionAnalysis(zai, individualForecasts, fusionMethod, confidenceLevel) {
+async function performFusionAnalysis(ai, individualForecasts, fusionMethod, confidenceLevel) {
   const prompt = `
     Perform fusion analysis on the following individual forecasts using ${fusionMethod} method:
     
@@ -673,11 +656,7 @@ async function performFusionAnalysis(zai, individualForecasts, fusionMethod, con
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',
@@ -729,7 +708,7 @@ function generateFallbackFusionAnalysis(fusionMethod) {
   };
 }
 
-async function generateUnifiedPredictions(zai, fusionResult, assets, forecastHorizon) {
+async function generateUnifiedPredictions(ai, fusionResult, assets, forecastHorizon) {
   const predictions = {};
 
   for (const asset of assets) {
@@ -794,7 +773,7 @@ function calculateFusionMetrics(individualForecasts, fusionResult) {
   };
 }
 
-async function generateFusionTradingRecommendations(zai, unifiedPredictions, fusionMetrics) {
+async function generateFusionTradingRecommendations(ai, unifiedPredictions, fusionMetrics) {
   const prompt = `
     Generate trading recommendations based on the following unified predictions and fusion metrics:
     
@@ -844,11 +823,7 @@ async function generateFusionTradingRecommendations(zai, unifiedPredictions, fus
     }
   `;
 
-<<<<<<< HEAD
-  const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
     messages: [
       {
         role: 'system',

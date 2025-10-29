@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-<<<<<<< HEAD
+
 import AI from 'z-ai-web-dev-sdk';
-=======
-import ZAI from 'z-ai-web-dev-sdk';
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
+
+
+
 
 // POST /api/commod/forecast - Forecast commodity prices using AI
 export async function POST(request: NextRequest) {
@@ -43,17 +43,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-<<<<<<< HEAD
-    // Initialize AI SDK
-    const ai = await AI.create();
-=======
-    // Initialize ZAI SDK
-    const zai = await ZAI.create();
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
-    // Generate commodity forecast
+    
+
+
+    // Initialize AI SDK
+  const ai = await AI.create();
+
+  // Generate commodity forecast
     const forecast = await generateCommodityForecast(
-      zai, 
+      ai, 
       commodity, 
       forecastHorizon, 
       includeTechnicalAnalysis, 
@@ -64,7 +63,7 @@ export async function POST(request: NextRequest) {
     );
 
     // Generate trading signals
-    const tradingSignals = await generateTradingSignals(zai, commodity, forecast);
+    const tradingSignals = await generateTradingSignals(ai, commodity, forecast);
 
     // Calculate risk metrics
     const riskMetrics = calculateRiskMetrics(forecast);
@@ -130,7 +129,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateCommodityForecast(zai, commodity, forecastHorizon, includeTechnical, includeFundamental, includeExternal, confidenceLevel, historicalData) {
+async function generateCommodityForecast(ai, commodity, forecastHorizon, includeTechnical, includeFundamental, includeExternal, confidenceLevel, historicalData) {
   const prompt = `
     Generate a ${forecastHorizon}-day price forecast for ${commodity} with the following parameters:
     
@@ -231,11 +230,7 @@ async function generateCommodityForecast(zai, commodity, forecastHorizon, includ
     }
   `;
 
-<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -435,7 +430,7 @@ function generatePredictionPoints(commodity, forecastHorizon, basePrice) {
   return predictions;
 }
 
-async function generateTradingSignals(zai, commodity, forecast) {
+async function generateTradingSignals(ai, commodity, forecast) {
   const prompt = `
     Based on the following commodity forecast, generate trading signals for ${commodity}:
     
@@ -475,11 +470,8 @@ async function generateTradingSignals(zai, commodity, forecast) {
     }
   `;
 
-<<<<<<< HEAD
+
   const completion = await ai.chat.completions.create({
-=======
-  const completion = await zai.chat.completions.create({
->>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

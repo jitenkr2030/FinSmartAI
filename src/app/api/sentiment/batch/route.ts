@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
+import AI from 'z-ai-web-dev-sdk';
+
 // GET /api/sentiment/batch - Get sentiment summary and batch data
 export async function GET(request: NextRequest) {
   try {
