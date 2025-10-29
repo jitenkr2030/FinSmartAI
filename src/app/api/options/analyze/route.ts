@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/options/analyze - Analyze options strategies and positions
 export async function POST(request: NextRequest) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Prepare strategy analysis data
     const strategyData = {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       analysisTimestamp: new Date().toISOString()
     };
     
-    // Perform strategy analysis using ZAI
+    // Perform strategy analysis using AI
     let analysisResult;
     try {
       const completion = await ai.chat.completions.create({

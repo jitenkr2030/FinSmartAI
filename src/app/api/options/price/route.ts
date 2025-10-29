@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/options/price - Price options using AI models
 export async function POST(request: NextRequest) {
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Prepare option data for pricing
     const optionData = {
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Perform option pricing using ZAI
+    // Perform option pricing using AI
     let pricingResult;
     try {
       const completion = await ai.chat.completions.create({

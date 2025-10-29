@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/fundflow/analyze - Analyze institutional fund flows
 export async function POST(request: NextRequest) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Get historical flow data for the specified period
     const historicalFlows = await getHistoricalFlows(startDate, endDate, segment, includeFII, includeDII);
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       trends: calculateFlowTrends(historicalFlows)
     };
     
-    // Perform flow analysis using ZAI
+    // Perform flow analysis using AI
     let analysisResult;
     try {
       const completion = await ai.chat.completions.create({

@@ -72,7 +72,7 @@ NEXTAUTH_URL=https://your-domain.com
 NEXTAUTH_SECRET=your-super-secret-key
 
 # AI Service Configuration
-ZAI_API_KEY=your-z-ai-api-key
+AI_API_KEY=your-ai-api-key
 ```
 
 #### Optional Variables

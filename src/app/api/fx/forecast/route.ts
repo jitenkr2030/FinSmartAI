@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/fx/forecast - Forecast exchange rates using AI
 export async function POST(request: NextRequest) {
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
 
     // Generate FX forecast
     const forecast = await generateFXForecast(

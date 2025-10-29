@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/risk/analyze - Analyze portfolio risk
 export async function POST(request: NextRequest) {
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Prepare portfolio data for analysis
     const portfolioData = {
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       riskMetrics
     };
     
-    // Perform risk analysis using ZAI
+    // Perform risk analysis using AI
     let riskAnalysis;
     try {
       const completion = await ai.chat.completions.create({

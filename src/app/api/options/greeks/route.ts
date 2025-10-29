@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/options/greeks - Calculate option Greeks and sensitivity analysis
 export async function POST(request: NextRequest) {
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Prepare option data for Greeks calculation
     const optionData = {
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Perform Greeks calculation using ZAI
+    // Perform Greeks calculation using AI
     let greeksResult;
     try {
       const completion = await ai.chat.completions.create({

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 import { withValidation, schemas } from '@/lib/middleware/validationMiddleware';
 
 // POST /api/sentiment/analyze - Analyze sentiment of text content
@@ -12,9 +12,9 @@ export const POST = withValidation(
       const startTime = Date.now();
       
       // Initialize AI SDK
-      const ai = await ZAI.create();
+      const ai = await AI.create();
       
-      // Perform sentiment analysis using ZAI
+      // Perform sentiment analysis using AI
       let sentimentResult;
       try {
         const completion = await ai.chat.completions.create({

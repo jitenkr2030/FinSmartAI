@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/fundflow/predict - Predict future institutional flows
 export async function POST(request: NextRequest) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
     // Get historical data for model training
     const endDate = new Date();
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       technicalIndicators: calculateTechnicalIndicators(historicalFlows)
     };
     
-    // Perform flow prediction using ZAI
+    // Perform flow prediction using AI
     let predictionResult;
     try {
       const completion = await ai.chat.completions.create({

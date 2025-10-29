@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/predict - Make prediction using specified model
 export async function POST(request: NextRequest) {
@@ -45,9 +45,9 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
     
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
     
-    // Make prediction using ZAI
+    // Make prediction using AI
     let predictionResult;
     try {
       // For now, we'll use a generic chat completion for demonstration

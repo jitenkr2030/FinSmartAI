@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import ZAI from 'z-ai-web-dev-sdk';
+import AI from 'z-ai-web-dev-sdk';
 
 // POST /api/mutual/rank - Rank mutual funds using AI analysis
 export async function POST(request: NextRequest) {
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Initialize AI SDK
-    const ai = await ZAI.create();
+    const ai = await AI.create();
 
     // Process each fund for ranking
     const rankedFunds = await Promise.all(
