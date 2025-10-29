@@ -20,9 +20,13 @@ export const metadata: Metadata = {
   keywords: ["FinSmartAI", "Financial AI", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React", "Trading", "Investment"],
   authors: [{ name: "FinSmartAI Team" }],
 <<<<<<< HEAD
+<<<<<<< HEAD
   icons: {
     icon: "/logo.svg",
   },
+=======
+
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 =======
 
 >>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
@@ -60,7 +64,11 @@ export default function RootLayout({
     </html>
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 =======
 }
 >>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3

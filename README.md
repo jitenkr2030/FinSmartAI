@@ -44,7 +44,11 @@ FinSmartAI is a cutting-edge financial analysis platform powered by artificial i
 - **🧩 shadcn/ui** - High-quality UI components
 
 ### AI & Machine Learning
+<<<<<<< HEAD
 - **🤖 AI SDK** - AI integration for financial analysis
+=======
+- **🤖 Z-AI SDK** - AI integration for financial analysis
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 - **🧠 Kronos Model** - Custom financial prediction models
 - **📊 TensorFlow/PyTorch** - Machine learning frameworks
 - **🔍 Scikit-learn** - Statistical analysis tools
@@ -216,7 +220,11 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-secret-key
 
 # AI Services
+<<<<<<< HEAD
 AI_API_KEY=your-ai-api-key
+=======
+ZAI_API_KEY=your-z-ai-api-key
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 # Payment (Stripe)
 STRIPE_PUBLISHABLE_KEY=pk_test_...
@@ -443,7 +451,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - [OpenAI](https://openai.com) for AI-powered development assistance
+=======
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 =======
 >>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 - [Next.js](https://nextjs.org/) for the amazing React framework
@@ -476,9 +487,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built with ❤️ for the financial community. Powered by [OpenAI](https://openai.com) 🚀
 
 **FinSmartAI** - Making intelligent financial analysis accessible to everyone.
+=======
+Built with ❤️ for the financial community.
+
+**FinSmartAI** - Making intelligent financial analysis accessible to everyone.
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 =======
 Built with ❤️ for the financial community.
 

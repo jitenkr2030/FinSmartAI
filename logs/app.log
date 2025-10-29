@@ -347,6 +347,7 @@
 {"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T11:53:31.436Z"}
 {"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T11:53:31.436Z"}
 <<<<<<< HEAD
+<<<<<<< HEAD
 {"level":"info","message":"Real-time monitoring started Real-time monitoring started","timestamp":"2025-10-28T11:56:17.084Z"}
 {"level":"info","message":"Export scheduler started Export scheduler started","timestamp":"2025-10-28T11:56:17.085Z"}
 {"level":"info","message":"Audit trail service initialized Audit trail service initialized","meta":{"config":{"alertRulesCount":2,"complianceStandardsCount":2,"enabled":true,"realTimeMonitoring":true,"retentionDays":365}},"timestamp":"2025-10-28T11:56:17.086Z"}
@@ -371,5 +372,7 @@
 {"level":"info","message":"Initializing log indexing Initializing log indexing","timestamp":"2025-10-28T11:56:22.331Z"}
 {"level":"info","message":"Loading existing logs into index Loading existing logs into index","timestamp":"2025-10-28T11:56:22.332Z"}
 {"level":"info","message":"Log management service initialized Log management service initialized","meta":{"config":{"archiving":true,"indexing":true,"monitoring":true,"retention":{"accessLogs":7,"applicationLogs":30,"auditLogs":365,"errorLogs":90},"rotation":true}},"timestamp":"2025-10-28T11:56:22.332Z"}
+=======
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 =======
 >>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3

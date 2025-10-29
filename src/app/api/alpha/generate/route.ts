@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+<<<<<<< HEAD
 import AI from 'z-ai-web-dev-sdk';
+=======
+import ZAI from 'z-ai-web-dev-sdk';
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 // POST /api/alpha/generate - Generate automated trading strategies using AI
 export async function POST(request: NextRequest) {
@@ -48,8 +52,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+<<<<<<< HEAD
     // Initialize AI SDK
     const ai = await AI.create();
+=======
+    // Initialize ZAI SDK
+    const zai = await ZAI.create();
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
     // Generate trading strategy
     const strategy = await generateTradingStrategy(
@@ -286,7 +295,11 @@ async function generateTradingStrategy(zai, assets, strategyType, timeframe, ris
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -489,7 +502,11 @@ async function generateBacktestResults(zai, strategy, assets, backtestPeriod) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -656,7 +673,11 @@ async function generateOptimizationRecommendations(zai, strategy, backtestResult
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

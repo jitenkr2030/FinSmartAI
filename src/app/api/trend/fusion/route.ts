@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+<<<<<<< HEAD
 import AI from 'z-ai-web-dev-sdk';
+=======
+import ZAI from 'z-ai-web-dev-sdk';
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 // POST /api/trend/fusion - Unified forecasting using multi-modal fusion
 export async function POST(request: NextRequest) {
@@ -48,8 +52,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+<<<<<<< HEAD
     // Initialize AI SDK
     const ai = await AI.create();
+=======
+    // Initialize ZAI SDK
+    const zai = await ZAI.create();
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
     // Generate individual model forecasts
     const individualForecasts = await generateIndividualForecasts(
@@ -234,7 +243,11 @@ async function generateSentimentForecast(zai, asset, forecastHorizon) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -295,7 +308,11 @@ async function generateTechnicalForecast(zai, asset, forecastHorizon) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -366,7 +383,11 @@ async function generateFundamentalForecast(zai, asset, forecastHorizon) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -437,7 +458,11 @@ async function generateMacroForecast(zai, asset, forecastHorizon) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -648,7 +673,11 @@ async function performFusionAnalysis(zai, individualForecasts, fusionMethod, con
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -815,7 +844,11 @@ async function generateFusionTradingRecommendations(zai, unifiedPredictions, fus
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+<<<<<<< HEAD
 import AI from 'z-ai-web-dev-sdk';
+=======
+import ZAI from 'z-ai-web-dev-sdk';
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 // POST /api/fx/forecast - Forecast exchange rates using AI
 export async function POST(request: NextRequest) {
@@ -39,8 +43,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+<<<<<<< HEAD
     // Initialize AI SDK
     const ai = await AI.create();
+=======
+    // Initialize ZAI SDK
+    const zai = await ZAI.create();
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
     // Generate FX forecast
     const forecast = await generateFXForecast(
@@ -249,7 +258,11 @@ async function generateFXForecast(zai, currencyPair, forecastHorizon, includeTec
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -497,7 +510,11 @@ async function generateFXTradingSignals(zai, currencyPair, forecast) {
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

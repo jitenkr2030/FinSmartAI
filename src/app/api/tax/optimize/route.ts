@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+<<<<<<< HEAD
 import AI from 'z-ai-web-dev-sdk';
+=======
+import ZAI from 'z-ai-web-dev-sdk';
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 // POST /api/tax/optimize - Optimize tax calculations using AI
 export async function POST(request: NextRequest) {
@@ -39,8 +43,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+<<<<<<< HEAD
     // Initialize AI SDK
     const ai = await AI.create();
+=======
+    // Initialize ZAI SDK
+    const zai = await ZAI.create();
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
     // Generate tax optimization
     const taxOptimization = await generateTaxOptimization(
@@ -231,7 +240,11 @@ async function generateTaxOptimization(zai, financialData, taxRegime, businessTy
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -418,7 +431,11 @@ async function generateTaxPlanning(zai, financialData, taxOptimization, business
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',
@@ -507,7 +524,11 @@ async function generateRegimeComparison(zai, financialData, businessType, financ
     }
   `;
 
+<<<<<<< HEAD
   const completion = await ai.chat.completions.create({
+=======
+  const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     messages: [
       {
         role: 'system',

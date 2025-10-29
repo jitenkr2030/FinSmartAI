@@ -299,7 +299,11 @@ const technicalSpecs = [
     icon: Cpu,
     items: [
       "12 Specialized AI Models",
+<<<<<<< HEAD
       "AI SDK Integration",
+=======
+      "Z-AI SDK Integration",
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
       "Real-time Processing",
       "Multi-language Support (Hindi/English)"
     ]

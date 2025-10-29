@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+<<<<<<< HEAD
 import AI from 'z-ai-web-dev-sdk';
+=======
+import ZAI from 'z-ai-web-dev-sdk';
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
 
 // POST /api/predict - Make prediction using specified model
 export async function POST(request: NextRequest) {
@@ -44,15 +48,26 @@ export async function POST(request: NextRequest) {
     
     const startTime = Date.now();
     
+<<<<<<< HEAD
     // Initialize AI SDK
     const ai = await AI.create();
     
     // Make prediction using AI
+=======
+    // Initialize ZAI SDK
+    const zai = await ZAI.create();
+    
+    // Make prediction using ZAI
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
     let predictionResult;
     try {
       // For now, we'll use a generic chat completion for demonstration
       // In production, you would use specific model endpoints
+<<<<<<< HEAD
       const completion = await ai.chat.completions.create({
+=======
+      const completion = await zai.chat.completions.create({
+>>>>>>> aa8628898dfdfcaa419c517ef508a8118ba953a3
         messages: [
           {
             role: 'system',
